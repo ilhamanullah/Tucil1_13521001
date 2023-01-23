@@ -1,0 +1,8 @@
+Kartu yang terpilih : 2 7 7 10
+Jumlah solusi: 3
+Solusi: 
+(2 + (10 / 7)) * 7
+7 * ((10 / 7) + 2)
+((10 / 7) + 2) * 7
+
+Waktu eksekusi program : 134 mikrosekon

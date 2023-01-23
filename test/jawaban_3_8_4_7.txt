@@ -1,0 +1,9 @@
+Kartu yang terpilih : 3 4 7 8
+Jumlah solusi: 4
+Solusi: 
+(4 * (7 - 3)) + 8
+((7 - 3) * 4) + 8
+8 - ((3 - 7) * 4)
+8 + ((7 - 3) * 4)
+
+Waktu eksekusi program : 165 mikrosekon

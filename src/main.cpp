@@ -86,6 +86,7 @@ int main(){
             cout << "1. Input 4 kartu\n";
             cout << "2. Generate 4 kartu secara random\n";
             cout << "3. Keluar\n";
+            cout << "Masukkan pilihan : ";
             cin >> n;
         }
 
@@ -132,6 +133,7 @@ int main(){
                 int total = 0;
                 string operationRes[6969] = {};
                 sort(card, card+4);
+                auto start = chrono::steady_clock::now();
                 do{
                     for(int i=0; i<4; i++){   
                         for(int j=0; j<4; j++){
@@ -167,6 +169,9 @@ int main(){
                     }
                 }while(next_permutation(card, card+4));
 
+                auto end = chrono::steady_clock::now();
+                auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+
                 if(total == 0){
                     cout << "Tidak ada solusi\n";
                 }
@@ -176,7 +181,70 @@ int main(){
                     for(int i = 1; i <= total; i++){
                         cout << operationRes[i] << "\n";
                     }
+                    cout<< "\nWaktu eksekusi program : " << duration.count() << " mikrosekon\n";
                 }
+            cout << "Apakah anda ingin menyimpan hasil pencarian ke dalam file? (y/n) ";
+            char c;
+            cin >> c;
+            while(c != 'y' and c != 'n'){
+                cout << "Input tidak valid\n";
+                cout << "Apakah anda ingin menyimpan hasil pencarian ke dalam file? (y/n) ";
+                cin >> c;
+            }
+            if(c == 'y'){
+                ofstream file;
+                string namafile;
+                cout << "Masukkan nama file: ";
+                cin >> namafile;
+                namafile += ".txt";
+                file.open(namafile);
+                file << "Kartu yang terpilih :";
+                for(int i=0; i<4; i++){
+                    if(card[i] == 1){
+                        file << " A";
+                    }
+                    else if(card[i] == 11){
+                        file << " J";
+                    }
+                    else if(card[i] == 12){
+                        file << " Q";
+                    }
+                    else if(card[i] == 13){
+                        file << " K";
+                    }
+                    else{
+                        file << " " << card[i];
+                    }
+                }
+                file << "\n";
+                if(total == 0){
+                    file << "Tidak ada solusi\n";
+                }
+                else{
+                    file << "Jumlah solusi: " << total << "\n";
+                    file << "Solusi: \n";
+                    for(int i = 1; i <= total; i++){
+                        file << operationRes[i] << "\n";
+                    }
+                }
+                file << "\nWaktu eksekusi program : " << duration.count() << " mikrosekon";
+                file.close();
+            }
+            else{
+                cout << "Hasil pencarian tidak disimpan\n";
+            }
+            cout << "Apakah anda ingin melanjutkan permainan? (y/n) ";
+            char c2;
+            cin >> c2;
+            while(c2 != 'y' and c2 != 'n'){
+                cout << "Input tidak valid\n";
+                cout << "Apakah anda ingin melanjutkan permainan? (y/n) ";
+                cin >> c2;
+            }
+            if(c2 == 'n'){
+                cout << "Terima kasih telah bermain\n";
+                return 0;
+            }
         }
         else if(n == 3){
             cout << "Terima kasih telah bermain\n";
