@@ -196,7 +196,7 @@ int main(){
                 string namafile;
                 cout << "Masukkan nama file: ";
                 cin >> namafile;
-                namafile += ".txt";
+                namafile = "../test/" + namafile + ".txt";
                 file.open(namafile);
                 file << "Kartu yang terpilih :";
                 for(int i=0; i<4; i++){
